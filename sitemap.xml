@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://mballard25.github.io/Megan/index.html</loc>
-    <lastmod>2025-07-18T16:31:40.970Z</lastmod>
+    <loc>https://mballard25.github.io/Megan/projects.html</loc>
+    <lastmod>2025-07-18T16:43:38.142Z</lastmod>
   </url>
   <url>
-    <loc>https://mballard25.github.io/Megan/about.html</loc>
-    <lastmod>2025-07-18T16:31:40.970Z</lastmod>
+    <loc>https://mballard25.github.io/Megan/Projects/Project_title.html</loc>
+    <lastmod>2025-07-18T16:43:38.136Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mballard25.github.io/Megan/index.html</loc>
+    <lastmod>2025-07-18T16:43:38.142Z</lastmod>
   </url>
 </urlset>

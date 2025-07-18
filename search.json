@@ -1,8 +1,15 @@
 [
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "projects.html",
+    "href": "projects.html",
+    "title": "Projects",
+    "section": "",
+    "text": "No matching items"
+  },
+  {
+    "objectID": "Projects/Project_title.html",
+    "href": "Projects/Project_title.html",
+    "title": "Project Title",
     "section": "",
     "text": "About this site"
   }
