@@ -7,31 +7,83 @@ About this site
 Load the data
 
 ```{r}
-> library(readr)
-read_csv("FSIvsControlBead.csv")
+ library(dplyr)
+library(ggplot2)
+
+df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
 ```
 
 Prepare the data by making it a data frame
 ```{r}
-df <- read.csv("FSIvsControlBead.csv")
 
-
+fc_threshold <- 1
+padj_threshold <- 0.05
 ```
- Filter the significant genes
+ Filter the significant genes but rename first
  
 ```
 ```{r}
-df <- read.csv("file.csv", header = TRUE)
-head(df)
+df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
 
-> df <-df |>
-+ mutate(significant = ifelse(!is.na(B_FSI_vs_Ctrl_padj) & B_FSI_vs_Ctrl_padj < padj_threshold & abs ( B_FSI_vs_Ctrl_log2FoldChange) > fc_threshold, "yes", "no"))
-> ggplot(df, aes( x= B_FSI_vs_Ctrl_log2FoldChange, y=-log10(B_FSI_vs_Ctrl_padj), color= significant, label= symbol)) + 
-+ geom_point( alpha= 0.6) +
-+ scale_color_manual( values= c ("yes"= "red", "no"= "gray")) +
-+ labs (title = "Volcano Plot", x= "Log2 Fold Change", y= "-log10 Adjsuted p-value") +
-+ geom_text( data = subset(df, significant== "yes" ) , vjust= -1, size = 3, check_overlap = TRUE)
 
+colnames(df)
+
+
+names(df)[names(df) == "B_FSI_vs_Ctrl_padj"] <- "padj"
+
+names(df)[names(df) == "B_FSI_vs_Ctrl_log2FoldChange"] <- "FC"
+
+
+"padj" %in% colnames(df)
+
+library(dplyr)
+
+sig_genes <- df |>
+filter(!is.na(padj)) |>
+filter(padj < padj_threshold & abs(FC) > fc_threshold)
+
+sig_genes
+
+
+
+df <-df |>
+mutate(significant = ifelse(!is.na(padj) & padj < padj_threshold & abs (FC) > fc_threshold, "yes", "no"))
+
+df
+
+
+
+```
+to plot
+```{r}
+library(ggplot2)
+
+ggplot(df, aes(x = FC, y = -log10(padj), color = significant, label = symbol)) +
+  geom_point(alpha = 0.6) +
+  scale_color_manual(values = c("yes" = "red", "no" = "gray")) +
+  labs(
+    title = "Volcano Plot",
+    x = "Log2 Fold Change",
+    y = "-log10 Adjusted p-value") +
+  geom_text(
+    data = subset(df, significant == "yes"),
+    vjust = -1,
+    size = 3,
+    check_overlap = TRUE)
+
+```
+top genes
+```{r}
+
+
+
+top_genes <- sig_genes %>%
+arrange(desc(abs(FC))) %>%
+slice(1:10)
+
+top_genes
+
+ggplot(top_genes, aes(x = reorder(symbol, FC), y = FC, fill = FC > 0)) + geom_col() + coord_flip() + labs(title = "Top 10 Most Affected Genes", x = "Gene", y = "Log2 Fold Change") + scale_fill_manual(values = c("TRUE" = "steelblue", "FALSE" = "salmon")) + theme_minimal()
 
 ```
 
