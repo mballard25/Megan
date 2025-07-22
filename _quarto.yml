@@ -7,7 +7,6 @@ website:
     right:
       - href: index.qmd
         text: Home
-        image: IMG_0335.jpeg
       - href: projects.qmd
         text: Projects
 
