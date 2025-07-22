@@ -33,7 +33,7 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 
-df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
+df <- read_csv("FSIvsControlBead.csv")
 ```
 
 Prepare the data by making it a data frame
