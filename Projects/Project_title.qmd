@@ -33,7 +33,7 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 
-df <- read_csv("FSIvsControlBead.csv")
+df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
 ```
 
 Prepare the data by making it a data frame
@@ -46,7 +46,7 @@ padj_threshold <- 0.05
  
 
 ```{r}
-df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
+#df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
 
 
 colnames(df)
@@ -59,7 +59,7 @@ names(df)[names(df) == "B_FSI_vs_Ctrl_log2FoldChange"] <- "FC"
 
 "padj" %in% colnames(df)
 
-library(dplyr)
+#library(dplyr)
 
 sig_genes <- df |>
 filter(!is.na(padj)) |>
