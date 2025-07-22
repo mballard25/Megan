@@ -198,13 +198,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>padj_threshold <span class="ot">&lt;-</span> <span class="fl">0.05</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Filter the significant genes but rename first</p>
-<pre><code>::: {.cell}
-
-```{.r .cell-code}
-df &lt;- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
-
-
-colnames(df)</code></pre>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"FSIvsControlBead.csv"</span>, <span class="at">header =</span> <span class="cn">TRUE</span>, <span class="at">check.names =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>[1] "X"                            "symbol"                      
 [3] "B_FSI_vs_Ctrl_baseMean"       "B_FSI_vs_Ctrl_log2FoldChange"
@@ -299,6 +297,7 @@ colnames(df)</code></pre>
 </div>
 
 
+</div>
 </div>
 
 </main> <!-- /main -->
