@@ -1,6 +1,7 @@
 ---
 title: "Megan Ballard"
 toc: false
+image: IMG_0335.jpeg
 about:
   template: trestles
   links:
