@@ -22,6 +22,10 @@ In order to look at endothelial cells specifically, my lab uses I am using a Cdh
 
 
 Because I am particularly interested in sepsis-induced acute kidney injury, I began with renal mRNA from control and sepsis-treated mice. 
+```{r}
+getwd()
+ls()
+```
 
 
 ```{r}
@@ -33,7 +37,7 @@ library(dplyr)
 library(ggplot2)
 library(tidyverse)
 
-df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
+df <- read.table("FSIvsControlBead.csv", sep = ',')
 ```
 
 Prepare the data by making it a data frame
