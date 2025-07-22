@@ -20,10 +20,7 @@ Sepsis begins as a primary infection. Like any other infection, Endothelial cell
 
 Because I am particularly interested in sepsis-induced acute kidney injury, I began with renal mRNA from control and sepsis-treated mice.
 
-```{r}
-getwd()
-ls()
-```
+# Step 1: Load Required Libraries and data set to be analyzed
 
 ```{r}
 #| message: false
@@ -37,7 +34,7 @@ library(tidyverse)
 df <- read.table("FSIvsControlBead.csv", sep = ',')
 ```
 
-Prepare the data by making it a data frame
+#Step 2: Set appropriate thresholds for the data I am interested in
 
 ```{r}
 
@@ -45,39 +42,46 @@ fc_threshold <- 1
 padj_threshold <- 0.05
 ```
 
-Filter the significant genes but rename first
+# Optional tidying step: Rename columns in R for simplicity
 
 ```{r}
+
 df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
 
-
 colnames(df)
-
 
 names(df)[names(df) == "B_FSI_vs_Ctrl_padj"] <- "padj"
 
 names(df)[names(df) == "B_FSI_vs_Ctrl_log2FoldChange"] <- "FC"
 
+print(names(df))
 
-#padj %in% colnames(df)
+```
 
-#library(dplyr)
+# Step 3: Set appropriate threshold for data of interest
+```{r}
+padj <- padj_threshold
+FC <- fc_threshold
 
-sig_genes <- df |>
-filter(!is.na(padj)) |>
-filter(padj < padj_threshold & abs(FC) > fc_threshold)
+padj_threshold <- 0.05
+fc_threshold <- 1.5
+```
 
+
+# Step 4: Define significant genes
+
+```{r}
+sig_genes <- df |> 
+  filter(!is.na(padj)) |> 
+  filter(padj < padj_threshold & abs(FC) > fc_threshold)
 
 df <-df |>
 mutate(significant = ifelse(!is.na(padj) & padj < padj_threshold & abs (FC) > fc_threshold, "yes", "no"))
 
-
-
-
 ```
 
-to plot
 
+# Step 5: Create Volcano Plot
 ```{r}
 library(ggplot2)
 
@@ -96,12 +100,9 @@ ggplot(df, aes(x = FC, y = -log10(padj), color = significant, label = symbol)) +
 
 ```
 
-top genes
+# Step 6: Create Top Genes List
 
 ```{r}
-
-
-
 top_genes <- sig_genes %>%
 arrange(desc(abs(FC))) %>%
 slice(1:10)
