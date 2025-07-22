@@ -1,0 +1,38 @@
+Script:
+
+Everything up until steps, I can just read in a way
+
+when I get to step 1: 
+
+so I will mainly be using functions within tidyverse so I begin with librarying 
+as well as importing my data set
+
+next because the sheet I am using is from a larger data file, I want to rename
+my columns on R so that I don't have to alter the original file
+
+I had a lot of issues with this so thie first command is making sure that my
+first row is actually recognized as headers
+
+then I had r list my column headers 
+
+I selected the ones I wanted to rename and just to clarify this is RNA seq that 
+already had DESeq analysis so the data I have is more manageable and its the
+base mean and fold change value with the difference being that the base mean is 
+comparing the averaged normalized expression compared to control while the fold 
+change refers to the magnitidue of change. In this case it is a log2 FC so 
+a value of 1 would refer to a doubling. 
+
+so I will be working with the fold change and p adjusted vlaues since I am curious
+about which genes experienced the largest fold change at a level of stat sig
+
+so I rename so I can refer to them easier then use print to double check it is 
+reprinted
+
+then I set the appropriate thesholds so i am tellig R that I want
+the genes that have a log2FC of at least 1 meaning at least a doubling as well
+as a p value of at least 0.05
+
+then here I am assigning variable names 
+
+
+then next i am further filtering out the sig genes by 
