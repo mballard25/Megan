@@ -3,3 +3,35 @@ title: "Project Title"
 ---
 
 About this site
+
+Load the data
+
+```{r}
+> library(readr)
+read_csv("FSIvsControlBead.csv")
+```
+
+Prepare the data by making it a data frame
+```{r}
+df <- read.csv("FSIvsControlBead.csv")
+
+
+```
+ Filter the significant genes
+ 
+```
+```{r}
+df <- read.csv("file.csv", header = TRUE)
+head(df)
+
+> df <-df |>
++ mutate(significant = ifelse(!is.na(B_FSI_vs_Ctrl_padj) & B_FSI_vs_Ctrl_padj < padj_threshold & abs ( B_FSI_vs_Ctrl_log2FoldChange) > fc_threshold, "yes", "no"))
+> ggplot(df, aes( x= B_FSI_vs_Ctrl_log2FoldChange, y=-log10(B_FSI_vs_Ctrl_padj), color= significant, label= symbol)) + 
++ geom_point( alpha= 0.6) +
++ scale_color_manual( values= c ("yes"= "red", "no"= "gray")) +
++ labs (title = "Volcano Plot", x= "Log2 Fold Change", y= "-log10 Adjsuted p-value") +
++ geom_text( data = subset(df, significant== "yes" ) , vjust= -1, size = 3, check_overlap = TRUE)
+
+
+```
+
