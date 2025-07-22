@@ -2,7 +2,6 @@
 title: "Which Endothelial genes are enriched under murine sepsis treatment?"
 format: html
 editor: visual
-
 ---
 
 My lab is interested in endothelial cells. My interest in particular is the role of endothelial cells in the pathophysiology of sepsis. 
@@ -17,6 +16,7 @@ Sepsis begins as a primary infection. Like any other infection, Endothelial cell
 In order to look at endothelial cells specifically, my lab uses I am using a Cdh5-driven inducible cre to produce a hemagglutinin tagged ribosomal protein 22. So by tissue harvest follow by immunoprecipitation of the hemaglutein tagged polyribosomes, I can capture the actively translated mRNA from endothelial cells and determine which transcripts are enriched or depleted in endothelial cells based off an enrichment score based off IP-selected mRNA over the total tissue mRNA.
 
 :::{.column width="100%"}
+
 ![Genetic Model](MouseModel.png){height=300}
 
 
@@ -43,7 +43,7 @@ padj_threshold <- 0.05
 ```
  Filter the significant genes but rename first
  
-```
+
 ```{r}
 df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
 
@@ -72,6 +72,7 @@ mutate(significant = ifelse(!is.na(padj) & padj < padj_threshold & abs (FC) > fc
 
 
 ```
+
 to plot
 ```{r}
 library(ggplot2)
@@ -90,6 +91,7 @@ ggplot(df, aes(x = FC, y = -log10(padj), color = significant, label = symbol)) +
     check_overlap = TRUE)
 
 ```
+
 top genes
 ```{r}
 
