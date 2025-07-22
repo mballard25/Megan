@@ -39,7 +39,6 @@ df <- read.table("FSIvsControlBead.csv", sep = ',')
 # Step 2: Rename columns in R for simplicity
 
 ```{r}
-
 df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
 
 colnames(df)
@@ -55,6 +54,9 @@ print(names(df))
 # Step 3: Set appropriate threshold for data of interest
 
 ```{r}
+fc_threshold <- 1
+padj_threshold <- 0.05
+
 padj <- padj_threshold
 FC <- fc_threshold
 
