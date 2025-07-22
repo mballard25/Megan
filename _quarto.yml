@@ -6,7 +6,8 @@ website:
   navbar:
     right:
       - href: index.qmd
-        text: My House
+        text: Home
+        image: IMG_0335.jpeg
       - href: projects.qmd
         text: Projects
 
