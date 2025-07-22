@@ -2,10 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://mballard25.github.io/Megan/projects.html</loc>
-    <lastmod>2025-07-22T17:33:45.851Z</lastmod>
+    <lastmod>2025-07-22T17:37:46.804Z</lastmod>
   </url>
   <url>
     <loc>https://mballard25.github.io/Megan/index.html</loc>
-    <lastmod>2025-07-22T17:33:45.851Z</lastmod>
+    <lastmod>2025-07-22T17:37:46.804Z</lastmod>
+  </url>
+  <url>
+    <loc>https://mballard25.github.io/Megan/projects/Project_title.html</loc>
+    <lastmod>2025-07-22T17:37:46.827Z</lastmod>
   </url>
 </urlset>
