@@ -1,0 +1,115 @@
+---
+title: "Which Endothelial genes are enriched under murine sepsis treatment?"
+format: html
+editor: visual
+---
+
+My lab is interested in endothelial cells. My interest in particular is the role of endothelial cells in the pathophysiology of sepsis.
+
+::: {.column width="50%"}
+![Progression of Sepsis](schematic.png){height="200"}
+:::
+
+Sepsis begins as a primary infection. Like any other infection, Endothelial cells are a part of your first responders that directly and indirectly respond to pathogens. To that end, endothelial cells become activated where they undergo phenotypic changes to better attack a pathogen. This includes increasing their vascular permeability. So normally EC have tight barrier functions, however, they will diminish those barrier properties in order for leukocytes to extravasate into the tissue to help fight the pathogen. ECs with also increase their inflammatory response so they will be secreting cytokines to further recruit an immune response. ECs will also switch to a more procoagulant state so they can trap the pathogen from entering circulation. However, as the pathogen persists in cases like sepsis , these phenotypic changes that were once helpful in clearing the pathogen become detrimental to the host as the EC is unable to return to quiescence and this increased in vascular permeability gives rise to the vascular leakage driving organ dysfunction in sepsis complications.
+
+:::: {.column width="80%"}
+![Activated vs Dysfunctional Endothelium](ActivatedvsDysfunction.png){height="300"} In order to look at endothelial cells specifically, my lab uses I am using a Cdh5-driven inducible cre to produce a hemagglutinin tagged ribosomal protein 22. So by tissue harvest follow by immunoprecipitation of the hemaglutein tagged polyribosomes, I can capture the actively translated mRNA from endothelial cells and determine which transcripts are enriched or depleted in endothelial cells based off an enrichment score based off IP-selected mRNA over the total tissue mRNA.
+
+::: {.column width="100%"}
+![Genetic Model](MouseModel.png){height="300"}
+
+Because I am particularly interested in sepsis-induced acute kidney injury, I began with renal mRNA from control and sepsis-treated mice.
+
+```{r}
+getwd()
+ls()
+```
+
+```{r}
+#| message: false
+#| error: false
+#| warning: false
+
+library(dplyr)
+library(ggplot2)
+library(tidyverse)
+
+df <- read.table("FSIvsControlBead.csv", sep = ',')
+```
+
+Prepare the data by making it a data frame
+
+```{r}
+
+fc_threshold <- 1
+padj_threshold <- 0.05
+```
+
+Filter the significant genes but rename first
+
+```{r}
+df <- read.csv("FSIvsControlBead.csv", header = TRUE, check.names = TRUE)
+
+
+colnames(df)
+
+
+names(df)[names(df) == "B_FSI_vs_Ctrl_padj"] <- "padj"
+
+names(df)[names(df) == "B_FSI_vs_Ctrl_log2FoldChange"] <- "FC"
+
+
+#padj %in% colnames(df)
+
+#library(dplyr)
+
+sig_genes <- df |>
+filter(!is.na(padj)) |>
+filter(padj < padj_threshold & abs(FC) > fc_threshold)
+
+
+df <-df |>
+mutate(significant = ifelse(!is.na(padj) & padj < padj_threshold & abs (FC) > fc_threshold, "yes", "no"))
+
+
+
+
+```
+
+to plot
+
+```{r}
+library(ggplot2)
+
+ggplot(df, aes(x = FC, y = -log10(padj), color = significant, label = symbol)) +
+  geom_point(alpha = 0.6) +
+  scale_color_manual(values = c("yes" = "red", "no" = "gray")) +
+  labs(
+    title = "Volcano Plot",
+    x = "Log2 Fold Change",
+    y = "-log10 Adjusted p-value") +
+  geom_text(
+    data = subset(df, significant == "yes"),
+    vjust = -1,
+    size = 3,
+    check_overlap = TRUE)
+
+```
+
+top genes
+
+```{r}
+
+
+
+top_genes <- sig_genes %>%
+arrange(desc(abs(FC))) %>%
+slice(1:10)
+
+top_genes
+
+ggplot(top_genes, aes(x = reorder(symbol, FC), y = FC, fill = FC > 0)) + geom_col() + coord_flip() + labs(title = "Top 10 Most Affected Genes", x = "Gene", y = "Log2 Fold Change") + scale_fill_manual(values = c("TRUE" = "steelblue", "FALSE" = "salmon")) + theme_minimal()
+
+```
+:::
+::::
