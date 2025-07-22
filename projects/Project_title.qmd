@@ -10,7 +10,7 @@ My lab is interested in endothelial cells. My interest in particular is the role
 ![Progression of Sepsis](schematic.png){height="200"}
 :::
 
-Sepsis begins as a primary infection. Like any other infection, Endothelial cells are a part of your first responders that directly and indirectly respond to pathogens. To that end, endothelial cells become activated where they undergo phenotypic changes to better attack a pathogen. This includes increasing their vascular permeability. So normally EC have tight barrier functions, however, they will diminish those barrier properties in order for leukocytes to extravasate into the tissue to help fight the pathogen. ECs with also increase their inflammatory response so they will be secreting cytokines to further recruit an immune response. ECs will also switch to a more procoagulant state so they can trap the pathogen from entering circulation. However, as the pathogen persists in cases like sepsis , these phenotypic changes that were once helpful in clearing the pathogen become detrimental to the host as the EC is unable to return to quiescence and this increased in vascular permeability gives rise to the vascular leakage driving organ dysfunction in sepsis complications.
+Sepsis begins as a primary infection. Like any other infection, endothelial cells (ECs) are a part of your first responders that directly and indirectly respond to pathogens. To that end, endothelial cells become activated where they undergo phenotypic changes to better attack a pathogen. This includes increasing their vascular permeability. So normally EC have tight barrier functions, however, they will diminish those barrier properties in order for leukocytes to extravasate into the tissue to help fight the pathogen. ECs with also increase their inflammatory response so they will be secreting cytokines to further recruit an immune response. ECs will also switch to a more procoagulant state so they can trap the pathogen from entering circulation. However, as the pathogen persists in cases like sepsis , these phenotypic changes that were once helpful in clearing the pathogen become detrimental to the host as the EC is unable to return to quiescence and this increased in vascular permeability gives rise to the vascular leakage driving organ dysfunction in sepsis complications.
 
 :::: {.column width="80%"}
 ![Activated vs Dysfunctional Endothelium](ActivatedvsDysfunction.png){height="300"}
@@ -36,15 +36,7 @@ library(tidyverse)
 df <- read.table("FSIvsControlBead.csv", sep = ',')
 ```
 
-# Step 2: Set appropriate thresholds
-
-```{r}
-
-fc_threshold <- 1
-padj_threshold <- 0.05
-```
-
-# Optional tidying step: Rename columns in R for simplicity
+# Step 2: Rename columns in R for simplicity
 
 ```{r}
 
