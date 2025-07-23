@@ -1,5 +1,5 @@
 ---
-title: "Which Endothelial genes are enriched under murine sepsis treatment?"
+title: "Which endothelial genes are enriched under murine sepsis treatment?"
 format: html
 editor: visual
 ---
@@ -17,14 +17,14 @@ As the pathogen persists in cases like sepsis, these phenotypic changes that wer
 :::: {.column width="80%"}
 ![Activated vs Dysfunctional Endothelium](ActivatedvsDysfunction.png){height="300"}
 
-In order to look at endothelial cells specifically, I am using a Cdh5-driven inducible Cre to produce a hemagglutinin tagged ribosomal protein 22. So by tissue harvest follow by immunoprecipitation of the hemaglutein tagged polyribosomes, I can capture the actively translated mRNA from endothelial cells and determine which transcripts are enriched or depleted in endothelial cells.
+In order to look at endothelial cells specifically, I am using a Cdh5-driven inducible Cre to produce a hemagglutinin tagged ribosomal protein 22. So by tissue harvest followed by immunoprecipitation of the hemaglutein tagged polyribosomes, I can capture the actively translated mRNA from endothelial cells and determine which transcripts are enriched or depleted in endothelial cells.
 
 ::: {.column width="100%"}
 ![Genetic Model](MouseModel.png){height="300"}
 
 Because I am particularly interested in sepsis-induced acute kidney injury, I began with renal mRNA from control and sepsis-treated mice.
 
-# Step 1: Load Required Libraries and data set to be analyzed
+# Step 1: Load required libraries and data set to be analyzed
 
 ```{r}
 #| message: false
@@ -84,7 +84,7 @@ mutate(significant = ifelse(!is.na(padj) & padj < padj_threshold & abs (FC) > fc
 #| warning: false
 
 ggplot(df, aes(x = FC, y = -log10(padj), label = symbol)) +
-  geom_point(aes(color = significant), alpha = 0.6) + # Move color here
+  geom_point(aes(color = significant), alpha = 0.6) + 
   scale_color_manual(values = c("yes" = "red", "no" = "gray")) +
   labs(
     title = "Volcano Plot",
@@ -123,3 +123,5 @@ ggplot(top_genes, aes(x = reorder(symbol, FC), y = FC, fill = FC > 0)) +
 ```
 :::
 ::::
+
+This analysis gives me a better idea of what genes or pathways are potentially contributing to the pathology, and I can use these genes as guide in the future to determine if a therauptic option had a beneficial effect. 

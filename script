@@ -35,4 +35,19 @@ as a p value of at least 0.05
 then here I am assigning variable names 
 
 
-then next i am further filtering out the sig genes by 
+then next i am actually filtering out the sig genes by 
+first excluding NA
+then saying I want the genes from this column that are less than the previously 
+define 0.05 and an absolute value greater than 1
+
+then here I am creating a new column with only these genes with a columnn that has 
+true or false if that conditions are met (with FC and padj)
+
+then from that DF i am making a volcano plot
+
+and this is a little messy and doesn't give me the most direct answer, so I further 
+am going to define this with arranging my order is descending so top genes are first
+then spllitting my top 10 rows to give the top 10 genes and from
+here I can use other data bases to see what thereauptic options there
+are and if it is what I expect, a lot of these I know are involved in 
+immune response, so exactly what I would expect. R can help me a lot in future
