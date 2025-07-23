@@ -10,19 +10,19 @@ My lab is interested in endothelial cells. My interest in particular is the role
 ![Progression of Sepsis](schematic.png){height="200"}
 :::
 
-Sepsis begins as a primary infection. Like any other infection, endothelial cells (ECs) are a part of your first responders that directly and indirectly respond to pathogens. To that end, endothelial cells become activated where they undergo phenotypic changes to better attack a pathogen. This includes increasing their vascular permeability. So normally EC have tight barrier functions, however, they will diminish those barrier properties in order for leukocytes to extravasate into the tissue to help fight the pathogen. ECs with also increase their inflammatory response by secreting cytokines to further recruit an immune response. ECs will also switch to a more procoagulant state so they can trap the pathogen from entering circulation.
+Sepsis begins as a primary infection. Like any other infection, endothelial cells (ECs) are a part of your first responders that directly and indirectly respond to pathogens. To that end, endothelial cells become activated where they undergo phenotypic changes to better attack a pathogen. These changes include increasing their vascular permeability for leukocytes to extravasate into the tissue to help fight the pathogen. ECs with also increase their inflammatory response by secreting cytokines to further recruit an immune response. Lastly, ECs will switch to a more procoagulant state so they can trap the pathogen from entering circulation.
 
-As the pathogen persists in cases like sepsis, these phenotypic changes that were once helpful in clearing the pathogen become detrimental to the host as the ECs are unable to return to quiescence and the increased in vascular permeability gives rise to the vascular leakage driving organ dysfunction in sepsis complications.
+As a pathogen persists in cases like sepsis, the phenotypic changes that were once helpful in clearing the pathogen become detrimental to the host as the ECs are unable to return to quiescence. The increased vascular permeability gives rise to the vascular leakage driving organ dysfunction in sepsis complications.
 
 :::: {.column width="80%"}
 ![Activated vs Dysfunctional Endothelium](ActivatedvsDysfunction.png){height="300"}
 
-In order to look at endothelial cells specifically, I am using a Cdh5-driven inducible Cre to produce a hemagglutinin tagged ribosomal protein 22. So by tissue harvest followed by immunoprecipitation of the hemaglutein tagged polyribosomes, I can capture the actively translated mRNA from endothelial cells and determine which transcripts are enriched or depleted in endothelial cells.
+In order to look at endothelial cells specifically, I am using a Cdh5-driven inducible Cre to produce a hemagglutinin tagged ribosomal protein 22. By tissue harvest, followed by immunoprecipitation of the hemaglutein tagged polyribosomes, I can capture the actively translated mRNA from endothelial cells and determine which transcripts are enriched or depleted in endothelial cells.
 
 ::: {.column width="100%"}
 ![Genetic Model](MouseModel.png){height="300"}
 
-Because I am particularly interested in sepsis-induced acute kidney injury, I began with renal mRNA from control and sepsis-treated mice.
+Because I am particularly interested in sepsis-induced acute kidney injury, I began with RNA Seq data from renal mRNA of control and sepsis-treated mice.
 
 # Step 1: Load required libraries and data set to be analyzed
 
@@ -124,4 +124,4 @@ ggplot(top_genes, aes(x = reorder(symbol, FC), y = FC, fill = FC > 0)) +
 :::
 ::::
 
-This analysis gives me a better idea of what genes or pathways are potentially contributing to the pathology, and I can use these genes as guide in the future to determine if a therauptic option had a beneficial effect. 
+This analysis gives me a better idea of what genes or pathways are potentially contributing to the pathology of sepsis-induced acute kidney injury, and I can use these genes as a guide in the future to determine if a therapeutic option had a beneficial effect.
