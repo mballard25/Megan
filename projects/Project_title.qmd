@@ -69,7 +69,7 @@ FC <- fc_threshold
 ```{r}
 sig_genes <- df |> 
   filter(!is.na(padj)) |> 
-  filter(padj < padj_threshold & abs(FC) > fc_threshold)
+  filter(padj <= padj_threshold & abs(FC) >= fc_threshold)
 
 df <-df |>
 mutate(significant = ifelse(!is.na(padj) & padj < padj_threshold & abs (FC) > fc_threshold, "yes", "no"))
